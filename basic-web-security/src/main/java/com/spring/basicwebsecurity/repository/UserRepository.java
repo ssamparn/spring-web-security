@@ -1,12 +1,11 @@
 package com.spring.basicwebsecurity.repository;
 
-import com.spring.basicwebsecurity.entity.EmployeeEntity;
+import com.spring.basicwebsecurity.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeEntity, UUID> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
 }
