@@ -19,6 +19,7 @@
 
   <modules>
     <module>basic-web-security</module>
+    <module>https-web-security</module>
   </modules>
 
 </project>
