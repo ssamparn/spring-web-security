@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>web-security</name>
+  <name>Web Security</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +20,10 @@
   <modules>
     <module>basic-web-security</module>
     <module>https-web-security</module>
+    <module>jwt-issuer</module>
+    <module>jwt-consumer</module>
+    <module>simple-jwt</module>
+    <module>x509SecureServer</module>
   </modules>
 
 </project>

@@ -1,0 +1,17 @@
+server:
+  ssl:
+    key-store: classpath:cert-store/keystore.jks
+    key-store-password: ffnAJcrbEjNSypjC
+    key-alias: localhost
+    key-password: ffnAJcrbEjNSypjC
+    enabled: true
+    trust-store: classpath:cert-store/truststore.jks
+    trust-store-password: ffnAJcrbEjNSypjC
+    client-auth: need
+  port: 8443
+
+spring:
+  security:
+    user:
+      name: Admin
+      password: admin
