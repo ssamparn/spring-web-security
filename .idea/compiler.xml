@@ -8,15 +8,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jwt-consumer" />
-        <module name="https-web-security" />
-        <module name="x509SecureServer" />
-        <module name="basic-web-security" />
+        <module name="x509-secure-server" />
         <module name="simple-jwt" />
         <module name="jwt-issuer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="client-certificate" target="11" />
+      <module name="basic-web-security" target="17" />
+      <module name="client-certificate" target="17" />
+      <module name="https-web-security" target="17" />
+      <module name="x509SecureServer" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -27,6 +28,7 @@
       <module name="jwt-consumer" options="-parameters" />
       <module name="jwt-issuer" options="-parameters" />
       <module name="simple-jwt" options="-parameters" />
+      <module name="x509-secure-server" options="-parameters" />
       <module name="x509SecureServer" options="-parameters" />
     </option>
   </component>

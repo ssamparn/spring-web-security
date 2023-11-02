@@ -1,0 +1,1 @@
+https://www.linkedin.com/pulse/spring-boot-using-jwt-without-tung-vo/

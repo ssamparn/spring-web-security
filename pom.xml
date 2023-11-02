@@ -6,24 +6,23 @@
 
   <groupId>com.spring</groupId>
   <artifactId>web-security</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
-  <name>Web Security</name>
+  <name>Comprehensive Spring Web Security</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
   <modules>
-    <module>basic-web-security</module>
-    <module>https-web-security</module>
+<!--    <module>basic-web-security</module>-->
     <module>jwt-issuer</module>
     <module>jwt-consumer</module>
     <module>simple-jwt</module>
-    <module>x509SecureServer</module>
+    <module>x509-secure-server</module>
   </modules>
 
 </project>
