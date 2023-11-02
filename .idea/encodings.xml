@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/asta-bank-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/basic-web-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/https-web-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jwt-consumer/src/main/java" charset="UTF-8" />

@@ -9,11 +9,10 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.spring</groupId>
-	<artifactId>x509-secure-server</artifactId>
+	<artifactId>asta-bank-security</artifactId>
 	<version>1.0.0</version>
-	<name>x509 Secure Server</name>
-
-	<description>Securing Rest API with x.509 Client Certificate</description>
+	<name>Asta Bank Security</name>
+	<description>Demo of Security Implementation of a Bank</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -28,10 +27,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

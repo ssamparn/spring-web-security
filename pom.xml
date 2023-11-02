@@ -19,10 +19,11 @@
 
   <modules>
 <!--    <module>basic-web-security</module>-->
-    <module>jwt-issuer</module>
-    <module>jwt-consumer</module>
-    <module>simple-jwt</module>
-    <module>x509-secure-server</module>
+      <module>asta-bank-security</module>
+      <module>jwt-issuer</module>
+      <module>jwt-consumer</module>
+      <module>simple-jwt</module>
+      <module>x509-secure-server</module>
   </modules>
 
 </project>

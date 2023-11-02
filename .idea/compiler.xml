@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jwt-consumer" />
+        <module name="asta-bank-security" />
         <module name="x509-secure-server" />
         <module name="simple-jwt" />
         <module name="jwt-issuer" />
@@ -22,6 +23,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="asta-bank-security" options="-parameters" />
       <module name="basic-web-security" options="-parameters" />
       <module name="client-certificate" options="-parameters" />
       <module name="https-web-security" options="-parameters" />
