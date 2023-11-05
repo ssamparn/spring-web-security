@@ -1,0 +1,31 @@
+---
+version: "3.8"
+
+services:
+  mysql-container:
+    image: mysql:latest
+    container_name: asta-bank-security
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    cap_add:
+      - SYS_NICE
+    restart: always
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    environment:
+        MYSQL_DATABASE: astabank
+        MYSQL_ROOT_PASSWORD: asta-db-password
+        MYSQL_ROOT_HOST: '%'
+    volumes:
+      - mysql-data-container:/var/lib/mysql
+      - ./mysql-data-container/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - asta-bank-security-network
+
+volumes:
+  mysql-data-container:
+    driver: local
+
+networks:
+  asta-bank-security-network:

@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://asta-db-security.clhhlgmoghgd.eu-north-1.rds.amazonaws.com/astabank
+    username: asta_admin
+    password: asta-db-password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+

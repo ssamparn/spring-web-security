@@ -15,8 +15,8 @@ CREATE TABLE `authorities` (
     `authority` varchar(45) NOT NULL,
 PRIMARY KEY (`id`));
 
-INSERT IGNORE INTO `users` VALUES (NULL, 'user', 'userpassword', '1');
-INSERT IGNORE INTO `authorities` VALUES (NULL, 'user', 'write');
+INSERT IGNORE INTO `users` VALUES (NULL, 'asta-user', 'userpassword', '1');
+INSERT IGNORE INTO `authorities` VALUES (NULL, 'asta-user', 'write');
 
 CREATE TABLE `customer` (
      `id` int NOT NULL AUTO_INCREMENT,
