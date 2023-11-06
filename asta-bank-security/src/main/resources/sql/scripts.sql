@@ -20,16 +20,15 @@ PRIMARY KEY (`id`));
 INSERT IGNORE INTO `users` VALUES (NULL, 'asta-user', 'userpassword', '1');
 INSERT IGNORE INTO `authorities` VALUES (NULL, 'asta-user', 'write');
 
-
 -- Custom User Table if we don't want to rely on spring jdbc authentication
 
 CREATE TABLE `customer` (
      `id` int NOT NULL AUTO_INCREMENT,
      `email` varchar(45) NOT NULL,
-     `pwd` varchar(200) NOT NULL,
+     `password` varchar(200) NOT NULL,
      `role` varchar(45) NOT NULL,
      PRIMARY KEY (`id`)
 );
 
-INSERT INTO `customer` (`email`, `pwd`, `role`)
+INSERT INTO `customer` (`email`, `password`, `role`)
 VALUES ('sashank1991@gmail.com', 'asta-password', 'admin');
