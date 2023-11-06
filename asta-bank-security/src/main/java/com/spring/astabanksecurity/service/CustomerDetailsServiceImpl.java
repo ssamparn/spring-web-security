@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 @Profile("prod")
 @RequiredArgsConstructor
-public class UserDetailsImpl implements UserDetailsService {
+public class CustomerDetailsServiceImpl implements UserDetailsService {
 
     private final CustomerRepository customerRepository;
 
@@ -27,7 +27,7 @@ public class UserDetailsImpl implements UserDetailsService {
         List<Customer> customer = customerRepository.findByEmail(username);
 
         if (customer.size() == 0) {
-            throw new UsernameNotFoundException("User details not found for the user : " + username);
+            throw new UsernameNotFoundException("Email id not found for customer : " + username);
         }
 
         String userName = customer.get(0).getEmail();
