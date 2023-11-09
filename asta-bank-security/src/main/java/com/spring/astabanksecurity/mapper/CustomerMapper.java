@@ -2,10 +2,15 @@ package com.spring.astabanksecurity.mapper;
 
 import com.spring.astabanksecurity.entity.Customer;
 import com.spring.astabanksecurity.web.model.CustomerDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class CustomerMapper {
+
+    private final PasswordEncoder passwordEncoder;
 
     public CustomerDto toCustomerDto(Customer customer) {
         return CustomerDto.create()
@@ -20,7 +25,7 @@ public class CustomerMapper {
         Customer customer = new Customer();
         customer.setId(customerDto.getId());
         customer.setEmail(customerDto.getEmail());
-        customer.setPassword(customerDto.getPassword());
+        customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
         customer.setRole(customerDto.getRole());
         return customer;
     }
