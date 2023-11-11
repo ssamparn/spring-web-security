@@ -21,10 +21,9 @@ public class CardRestController {
 
         List<Cards> cards = cardService.getCardDetails(customerId);
 
-        if (cards != null) {
+        if (cards != null)
             return new ResponseEntity<>(cards, HttpStatus.OK);
-        } else {
+        else
             return null;
-        }
     }
 }

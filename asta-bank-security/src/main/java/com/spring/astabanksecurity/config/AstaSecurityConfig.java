@@ -22,7 +22,7 @@ public class AstaSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(CsrfConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/account", "/balance", "/card", "/loan")
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/account", "/balance", "/card", "/loan", "/user")
                         .authenticated())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/notices", "/contact", "/signup")
                         .permitAll())

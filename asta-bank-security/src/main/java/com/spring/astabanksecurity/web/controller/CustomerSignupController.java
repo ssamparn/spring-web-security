@@ -25,7 +25,7 @@ public class CustomerSignupController {
         Customer customerEntity = customerMapper.toCustomerEntity(customerDto);
         CustomerDto newCustomer = customerService.createCustomer(customerEntity);
 
-        if (newCustomer.getId() > 0)
+        if (newCustomer.getCustomerId() > 0)
             return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
 
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

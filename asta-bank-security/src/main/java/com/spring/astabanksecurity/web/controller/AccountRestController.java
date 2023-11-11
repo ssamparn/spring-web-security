@@ -16,12 +16,11 @@ public class AccountRestController {
     private final AccountService accountService;
 
     @GetMapping("/accounts")
-    public ResponseEntity<Accounts> getAccountDetails(@RequestParam int customerId) {
+    public ResponseEntity<Accounts> getCustomerAccountDetails(@RequestParam int customerId) {
         Accounts accounts = accountService.getCustomerAccounts(customerId);
-        if (accounts != null ) {
+        if (accounts != null )
             return new ResponseEntity<>(accounts, HttpStatus.OK);
-        } else {
+        else
             return null;
-        }
     }
 }

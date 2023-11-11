@@ -11,7 +11,7 @@ public class AccountService {
 
     private final AccountsRepository accountsRepository;
 
-    public Accounts getCustomerAccounts(int id) {
-        return accountsRepository.findByCustomerId(id);
+    public Accounts getCustomerAccounts(int customerId) {
+        return accountsRepository.findByCustomerId(customerId);
     }
 }

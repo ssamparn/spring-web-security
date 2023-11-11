@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder(builderMethodName = "create")
 public class CustomerDto {
-    private int id;
+    private int customerId;
     private String email;
     private String password;
     private String role;

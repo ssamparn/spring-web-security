@@ -18,8 +18,8 @@ public class BalanceRestController {
     private final BalanceService balanceService;
 
     @GetMapping("/balance")
-    public ResponseEntity<List<AccountTransactions>> getBalanceDetails(@RequestParam int id) {
-        List<AccountTransactions> accountTransactions = balanceService.getCustomerTransactions(id);
+    public ResponseEntity<List<AccountTransactions>> getBalanceDetails(@RequestParam int customerId) {
+        List<AccountTransactions> accountTransactions = balanceService.getCustomerTransactions(customerId);
 
         if (accountTransactions != null ) {
             return new ResponseEntity<>(accountTransactions, HttpStatus.OK);

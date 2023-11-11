@@ -40,9 +40,9 @@ public class Notice {
     @Column(name = "notice_end_date")
     private Date noticeEndDate;
 
-    @Column(name = "create_dt")
-    private Date createDt;
+    @Column(name = "creation_date")
+    private Date creationDate;
 
-    @Column(name = "update_dt")
-    private Date updateDt;
+    @Column(name = "update_date")
+    private Date updateDate;
 }

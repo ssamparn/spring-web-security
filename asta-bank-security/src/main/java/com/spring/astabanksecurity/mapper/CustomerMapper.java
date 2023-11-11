@@ -16,7 +16,7 @@ public class CustomerMapper {
 
     public CustomerDto toCustomerDto(Customer customer) {
         return CustomerDto.create()
-                .id(customer.getId())
+                .customerId(customer.getCustomerId())
                 .email(customer.getEmail())
                 .password(customer.getPassword())
                 .role(customer.getRole())
@@ -25,7 +25,7 @@ public class CustomerMapper {
 
     public Customer toCustomerEntity(CustomerDto customerDto) {
         Customer customer = new Customer();
-        customer.setId(customerDto.getId());
+        customer.setCustomerId(customerDto.getCustomerId());
         customer.setEmail(customerDto.getEmail());
         customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
         customer.setCreationDate(String.valueOf(new Date(System.currentTimeMillis())));
