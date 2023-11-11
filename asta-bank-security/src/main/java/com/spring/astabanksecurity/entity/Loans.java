@@ -1,16 +1,18 @@
 package com.spring.astabanksecurity.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -18,24 +20,31 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+@Table(name="loans")
+public class Loans {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "customer_id", nullable = false)
-    private int id;
+    @Column(name = "loan_number")
+    private int loanNumber;
 
-    private String name;
+    @Column(name = "customer_id")
+    private int customerId;
 
-    private String email;
+    @Column(name="start_date")
+    private Date startDate;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
+    @Column(name = "loan_type")
+    private String loanType;
 
-    @Column(name = "mobile_number")
-    private String mobileNumber;
+    @Column(name = "total_loan")
+    private int totalLoan;
 
-    private String role;
+    @Column(name = "amount_paid")
+    private int amountPaid;
+
+    @Column(name = "outstanding_amount")
+    private int outstandingAmount;
 
     @Column(name = "creation_date")
     private String creationDate;
