@@ -7,6 +7,8 @@ import com.spring.astabanksecurity.web.model.CustomerDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -17,5 +19,12 @@ public class CustomerService {
     public CustomerDto createCustomer(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
         return customerMapper.toCustomerDto(savedCustomer);
+    }
+
+    public Customer getCustomer(String name) {
+        List<Customer> customers = customerRepository.findByEmail(name);
+        if (customers.size() > 0)
+            return customers.get(0);
+        else return null;
     }
 }

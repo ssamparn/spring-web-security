@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+
 @Component
 @RequiredArgsConstructor
 public class CustomerMapper {
@@ -26,6 +28,7 @@ public class CustomerMapper {
         customer.setId(customerDto.getId());
         customer.setEmail(customerDto.getEmail());
         customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
+        customer.setCreationDate(String.valueOf(new Date(System.currentTimeMillis())));
         customer.setRole(customerDto.getRole());
         return customer;
     }

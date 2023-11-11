@@ -7,8 +7,10 @@ import com.spring.astabanksecurity.web.model.CustomerDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,5 +29,11 @@ public class CustomerSignupController {
             return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
 
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @RequestMapping("/user")
+    public ResponseEntity<Customer> getUserDetailsAfterLogin(Authentication authentication) {
+        Customer customer = customerService.getCustomer(authentication.getName());
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 }
