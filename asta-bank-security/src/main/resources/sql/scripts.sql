@@ -189,3 +189,32 @@ CREATE TABLE `contact_messages` (
     PRIMARY KEY (`contact_id`)
 );
 
+
+CREATE TABLE `authorities` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `customer_id` int NOT NULL,
+    `name` varchar(50) NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `customer_id` (`customer_id`),
+    CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+);
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (1, 1, 'VIEWACCOUNT');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (2, 1, 'VIEWCARDS');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (3, 1, 'VIEWLOANS');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (4, 1, 'VIEWBALANCE');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (5, 1, 'ROLE_USER');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (6, 1, 'ROLE_ADMIN');
+
+DELETE FROM `authorities`;

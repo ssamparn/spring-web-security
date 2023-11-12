@@ -1,5 +1,6 @@
 package com.spring.astabanksecurity.config;
 
+import com.spring.astabanksecurity.entity.Authority;
 import com.spring.astabanksecurity.entity.Customer;
 import com.spring.astabanksecurity.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -31,15 +33,20 @@ public class AstaUsernamePasswordAuthenticationProvider implements Authenticatio
 
         if (customers.size() > 0) {
             if (passwordEncoder.matches(password, customers.get(0).getPassword())) {
-                List<GrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority(customers.get(0).getRole()));
-                return new UsernamePasswordAuthenticationToken(username, password, authorities);
+                List<GrantedAuthority> grantedAuthorities = this.toGrantedAuthorities(customers.get(0).getAuthorities());
+                return new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
             } else {
                 throw new BadCredentialsException("Invalid password!");
             }
         } else {
             throw new BadCredentialsException("No user registered with this details!");
         }
+    }
+
+    private List<GrantedAuthority> toGrantedAuthorities(Set<Authority> authorities) {
+        return authorities.stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override
