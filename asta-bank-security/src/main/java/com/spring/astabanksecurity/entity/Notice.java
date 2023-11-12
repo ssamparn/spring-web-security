@@ -20,12 +20,12 @@ import java.sql.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="notice_details")
+@Table(name="notice")
 public class Notice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "notice_id")
+    @Column(name = "notice_id", nullable = false)
     private int noticeId;
 
     @Column(name = "notice_summary")

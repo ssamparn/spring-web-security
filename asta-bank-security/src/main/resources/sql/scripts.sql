@@ -1,9 +1,13 @@
 create database astabank;
 use astabank;
 
-drop table `users`;
-drop table `authorities`;
 drop table `customer`;
+drop table `accounts`;
+drop table `account_transactions`;
+drop table `loans`;
+drop table `cards`;
+drop table `notice_details`;
+drop table `contact_messages`;
 
 -- users and authorities tables are compliant with the specification of Spring Security's JdbcDaoImpl.
 
@@ -140,7 +144,7 @@ VALUES ('3455XXXX8673', 1, 'Credit', 7500, 600, 6900, CURDATE());
 INSERT INTO `cards` (`card_number`, `customer_id`, `card_type`, `total_limit`, `amount_used`, `available_amount`, `creation_date`)
 VALUES ('2359XXXX9346', 1, 'Credit', 20000, 4000, 16000, CURDATE());
 
-CREATE TABLE `notice_details` (
+CREATE TABLE `notice` (
       `notice_id` int NOT NULL AUTO_INCREMENT,
       `notice_summary` varchar(200) NOT NULL,
       `notice_details` varchar(500) NOT NULL,
@@ -151,28 +155,28 @@ CREATE TABLE `notice_details` (
       PRIMARY KEY (`notice_id`)
 );
 
-INSERT INTO `notice_details` ( `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
-VALUES ('Home Loan Interest rates reduced', 'Home loan interest rates are reduced as per the goverment guidelines. The updated rates will be effective immediately',
+INSERT INTO `notice` ( `notice_id`, `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
+VALUES ( '1', 'Home Loan Interest rates reduced', 'Home loan interest rates are reduced as per the goverment guidelines. The updated rates will be effective immediately',
         CURDATE() - INTERVAL 30 DAY, CURDATE() + INTERVAL 30 DAY, CURDATE(), null);
 
-INSERT INTO `notice_details` ( `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
-VALUES ('Net Banking Offers', 'Customers who will opt for Internet banking while opening a saving account will get a $50 amazon voucher',
+INSERT INTO `notice` ( `notice_id`, `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
+VALUES ( '2', 'Net Banking Offers', 'Customers who will opt for Internet banking while opening a saving account will get a $50 amazon voucher',
         CURDATE() - INTERVAL 30 DAY, CURDATE() + INTERVAL 30 DAY, CURDATE(), null);
 
-INSERT INTO `notice_details` ( `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
-VALUES ('Mobile App Downtime', 'The mobile application of the EazyBank will be down from 2AM-5AM on 12/05/2020 due to maintenance activities',
+INSERT INTO `notice` ( `notice_id`, `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
+VALUES ( '3', 'Mobile App Downtime', 'The mobile application of the EazyBank will be down from 2AM-5AM on 12/05/2020 due to maintenance activities',
         CURDATE() - INTERVAL 30 DAY, CURDATE() + INTERVAL 30 DAY, CURDATE(), null);
 
-INSERT INTO `notice_details` ( `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
-VALUES ('E Auction notice', 'There will be a e-auction on 12/08/2020 on the Bank website for all the stubborn arrears.Interested parties can participate in the e-auction',
+INSERT INTO `notice` ( `notice_id`, `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
+VALUES ( '4', 'E Auction notice', 'There will be a e-auction on 12/08/2020 on the Bank website for all the stubborn arrears.Interested parties can participate in the e-auction',
         CURDATE() - INTERVAL 30 DAY, CURDATE() + INTERVAL 30 DAY, CURDATE(), null);
 
-INSERT INTO `notice_details` ( `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
-VALUES ('Launch of Millennia Cards', 'Millennia Credit Cards are launched for the premium customers of EazyBank. With these cards, you will get 5% cashback for each purchase',
+INSERT INTO `notice` ( `notice_id`, `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
+VALUES ( '5', 'Launch of Millennia Cards', 'Millennia Credit Cards are launched for the premium customers of EazyBank. With these cards, you will get 5% cashback for each purchase',
         CURDATE() - INTERVAL 30 DAY, CURDATE() + INTERVAL 30 DAY, CURDATE(), null);
 
-INSERT INTO `notice_details` ( `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
-VALUES ('COVID-19 Insurance', 'EazyBank launched an insurance policy which will cover COVID-19 expenses. Please reach out to the branch for more details',
+INSERT INTO `notice` ( `notice_id`, `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)
+VALUES ( '6', 'COVID-19 Insurance', 'EazyBank launched an insurance policy which will cover COVID-19 expenses. Please reach out to the branch for more details',
         CURDATE() - INTERVAL 30 DAY, CURDATE() + INTERVAL 30 DAY, CURDATE(), null);
 
 CREATE TABLE `contact_messages` (

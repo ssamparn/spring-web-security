@@ -17,17 +17,22 @@ public class CustomerMapper {
     public CustomerDto toCustomerDto(Customer customer) {
         return CustomerDto.create()
                 .customerId(customer.getCustomerId())
+                .name(customer.getName())
                 .email(customer.getEmail())
                 .password(customer.getPassword())
+                .mobileNumber(customer.getMobileNumber())
+                .creationDate(customer.getCreationDate())
                 .role(customer.getRole())
+                .message("User registered successfully")
                 .build();
     }
 
     public Customer toCustomerEntity(CustomerDto customerDto) {
         Customer customer = new Customer();
-        customer.setCustomerId(customerDto.getCustomerId());
+        customer.setName(customerDto.getName());
         customer.setEmail(customerDto.getEmail());
         customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
+        customer.setMobileNumber(customerDto.getMobileNumber());
         customer.setCreationDate(String.valueOf(new Date(System.currentTimeMillis())));
         customer.setRole(customerDto.getRole());
         return customer;
