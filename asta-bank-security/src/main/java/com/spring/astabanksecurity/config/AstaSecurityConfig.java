@@ -1,10 +1,11 @@
 package com.spring.astabanksecurity.config;
 
+import com.spring.astabanksecurity.filter.CsrfCookieFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Collections;
@@ -23,7 +27,12 @@ public class AstaSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        requestHandler.setCsrfRequestAttributeName("_csrf");
+
         http
+                .securityContext(securityConfigurer -> securityConfigurer.requireExplicitSave(false))
+                .sessionManagement(sessrionManagement -> sessrionManagement.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .cors(corsCustomizer -> corsCustomizer.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
@@ -33,9 +42,16 @@ public class AstaSecurityConfig {
                     config.setMaxAge(3600L);
                     return config;
                 }))
-                .csrf(CsrfConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/account", "/balance", "/card", "/loan", "/user")
-                        .authenticated())
+                .csrf(csrfConfigurer -> csrfConfigurer
+                        .csrfTokenRequestHandler(requestHandler)
+                        .ignoringRequestMatchers("/contact", "/signup")
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                )
+                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/accounts", "/balance", "/card", "/loan", "/user")
+                        .authenticated()
+                )
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/notices", "/contact", "/signup")
                         .permitAll())
                 .formLogin(withDefaults())
