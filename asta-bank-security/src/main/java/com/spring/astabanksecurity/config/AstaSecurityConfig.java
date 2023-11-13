@@ -1,6 +1,9 @@
 package com.spring.astabanksecurity.config;
 
+import com.spring.astabanksecurity.filter.AuthoritiesLoggingAfterFilter;
+import com.spring.astabanksecurity.filter.AuthoritiesLoggingAtFilter;
 import com.spring.astabanksecurity.filter.CsrfCookieFilter;
+import com.spring.astabanksecurity.filter.RequestValidationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -48,12 +51,15 @@ public class AstaSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 )
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class)
+                .addFilterAt(new AuthoritiesLoggingAtFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/accounts").hasAuthority("VIEWACCOUNT")
-//                        .requestMatchers("/balance").hasAnyAuthority("VIEWACCOUNT","VIEWBALANCE")
-//                        .requestMatchers("/loan").hasAuthority("VIEWLOANS")
-//                        .requestMatchers("/card").hasAuthority("VIEWCARDS")
-                         .requestMatchers("/accounts").hasRole("USER")
+                        .requestMatchers("/accounts").hasAuthority("VIEWACCOUNT")
+                        .requestMatchers("/balance").hasAnyAuthority("VIEWACCOUNT","VIEWBALANCE")
+                        .requestMatchers("/loan").hasAuthority("VIEWLOANS")
+                        .requestMatchers("/card").hasAuthority("VIEWCARDS")
+                        .requestMatchers("/accounts").hasRole("USER")
                         .requestMatchers("/balance").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/loan").hasRole("USER")
                         .requestMatchers("/card").hasRole("USER")
