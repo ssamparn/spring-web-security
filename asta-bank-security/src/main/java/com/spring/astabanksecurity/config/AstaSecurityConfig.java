@@ -49,11 +49,17 @@ public class AstaSecurityConfig {
                 )
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/accounts", "/balance", "/card", "/loan", "/user")
-                        .authenticated()
+//                        .requestMatchers("/accounts").hasAuthority("VIEWACCOUNT")
+//                        .requestMatchers("/balance").hasAnyAuthority("VIEWACCOUNT","VIEWBALANCE")
+//                        .requestMatchers("/loan").hasAuthority("VIEWLOANS")
+//                        .requestMatchers("/card").hasAuthority("VIEWCARDS")
+                         .requestMatchers("/accounts").hasRole("USER")
+                        .requestMatchers("/balance").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/loan").hasRole("USER")
+                        .requestMatchers("/card").hasRole("USER")
+                        .requestMatchers("/user").authenticated()
+                        .requestMatchers("/notices", "/contact", "/signup").permitAll()
                 )
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/notices", "/contact", "/signup")
-                        .permitAll())
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults());
         return http.build();
