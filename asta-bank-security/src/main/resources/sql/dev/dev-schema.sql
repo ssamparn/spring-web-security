@@ -21,12 +21,12 @@ CREATE TABLE `customer` (
 );
 
 CREATE TABLE `authorities` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `customer_id` int NOT NULL,
-    `name` varchar(50) NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `customer_id` (`customer_id`),
-    CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+   `id` int NOT NULL AUTO_INCREMENT,
+   `customer_id` int NOT NULL,
+   `name` varchar(50) NOT NULL,
+   PRIMARY KEY (`id`),
+   KEY `customer_id` (`customer_id`),
+   CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
 );
 
 CREATE TABLE `accounts` (
@@ -59,46 +59,46 @@ CREATE TABLE `account_transactions` (
 
 
 CREATE TABLE `loans` (
-    `loan_number` int NOT NULL AUTO_INCREMENT,
-    `customer_id` int NOT NULL,
-    `start_date` date NOT NULL,
-    `loan_type` varchar(100) NOT NULL,
-    `total_loan` int NOT NULL,
-    `amount_paid` int NOT NULL,
-    `outstanding_amount` int NOT NULL,
-    `creation_date` date DEFAULT NULL,
-    PRIMARY KEY (`loan_number`),
-    KEY `customer_id` (`customer_id`),
-    CONSTRAINT `loan_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE
+     `loan_number` int NOT NULL AUTO_INCREMENT,
+     `customer_id` int NOT NULL,
+     `start_date` date NOT NULL,
+     `loan_type` varchar(100) NOT NULL,
+     `total_loan` int NOT NULL,
+     `amount_paid` int NOT NULL,
+     `outstanding_amount` int NOT NULL,
+     `creation_date` date DEFAULT NULL,
+     PRIMARY KEY (`loan_number`),
+     KEY `customer_id` (`customer_id`),
+     CONSTRAINT `loan_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `cards` (
-    `card_id` int NOT NULL AUTO_INCREMENT,
-    `card_number` varchar(100) NOT NULL,
-    `customer_id` int NOT NULL,
-    `card_type` varchar(100) NOT NULL,
-    `total_limit` int NOT NULL,
-    `amount_used` int NOT NULL,
-    `available_amount` int NOT NULL,
-    `creation_date` date DEFAULT NULL,
-    PRIMARY KEY (`card_id`),
-    KEY `customer_id` (`customer_id`),
-    CONSTRAINT `card_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE
+     `card_id` int NOT NULL AUTO_INCREMENT,
+     `card_number` varchar(100) NOT NULL,
+     `customer_id` int NOT NULL,
+     `card_type` varchar(100) NOT NULL,
+     `total_limit` int NOT NULL,
+     `amount_used` int NOT NULL,
+     `available_amount` int NOT NULL,
+     `creation_date` date DEFAULT NULL,
+     PRIMARY KEY (`card_id`),
+     KEY `customer_id` (`customer_id`),
+     CONSTRAINT `card_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `notice` (
-    `notice_id` int NOT NULL AUTO_INCREMENT,
-    `notice_summary` varchar(200) NOT NULL,
-    `notice_details` varchar(500) NOT NULL,
-    `notice_begin_date` date NOT NULL,
-    `notice_end_date` date DEFAULT NULL,
-    `creation_date` date DEFAULT NULL,
-    `update_date` date DEFAULT NULL,
-    PRIMARY KEY (`notice_id`)
+      `notice_id` int NOT NULL AUTO_INCREMENT,
+      `notice_summary` varchar(200) NOT NULL,
+      `notice_details` varchar(500) NOT NULL,
+      `notice_begin_date` date NOT NULL,
+      `notice_end_date` date DEFAULT NULL,
+      `creation_date` date DEFAULT NULL,
+      `update_date` date DEFAULT NULL,
+      PRIMARY KEY (`notice_id`)
 );
 
 CREATE TABLE `contact_messages` (
-    `contact_id` varchar(50) NOT NULL,
+    `contact_id` int NOT NULL AUTO_INCREMENT,
     `contact_name` varchar(50) NOT NULL,
     `contact_email` varchar(100) NOT NULL,
     `subject` varchar(500) NOT NULL,

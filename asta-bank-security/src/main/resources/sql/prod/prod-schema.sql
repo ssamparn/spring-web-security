@@ -98,7 +98,7 @@ CREATE TABLE `notice` (
 );
 
 CREATE TABLE `contact_messages` (
-    `contact_id` varchar(50) NOT NULL,
+    `contact_id` int NOT NULL AUTO_INCREMENT,
     `contact_name` varchar(50) NOT NULL,
     `contact_email` varchar(100) NOT NULL,
     `subject` varchar(500) NOT NULL,

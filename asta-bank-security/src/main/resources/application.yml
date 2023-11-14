@@ -4,3 +4,7 @@ server:
 spring:
   profiles:
     active: prod
+
+logging:
+  level:
+    org.springframework.security.web.FilterChainProxy: DEBUG # not recommended for production code

@@ -15,7 +15,7 @@ public class ContactService {
     private final ContactRepository contactRepository;
 
     public Contact saveContactInquiryDetails(Contact contact) {
-        contact.setContactId(this.createServiceRequestNumber());
+//        contact.setContactId(this.createServiceRequestNumber());
         contact.setCreationDate(new Date(System.currentTimeMillis()));
         return contactRepository.save(contact);
     }

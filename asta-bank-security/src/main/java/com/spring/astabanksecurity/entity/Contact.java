@@ -2,6 +2,8 @@ package com.spring.astabanksecurity.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,7 +25,8 @@ public class Contact {
 
     @Id
     @Column(name = "contact_id")
-    private String contactId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long contactId;
 
     @Column(name = "contact_name")
     private String contactName;

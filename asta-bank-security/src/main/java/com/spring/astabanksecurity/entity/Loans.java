@@ -24,7 +24,7 @@ import java.sql.Date;
 public class Loans {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loan_number")
     private int loanNumber;
 

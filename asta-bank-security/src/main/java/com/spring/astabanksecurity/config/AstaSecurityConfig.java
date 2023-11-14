@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,7 @@ import java.util.Collections;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+@EnableWebSecurity(debug = true) // not recommended for production code
 public class AstaSecurityConfig {
 
     @Bean
@@ -55,10 +57,10 @@ public class AstaSecurityConfig {
                 .addFilterAt(new AuthoritiesLoggingAtFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/accounts").hasAuthority("VIEWACCOUNT")
-                        .requestMatchers("/balance").hasAnyAuthority("VIEWACCOUNT","VIEWBALANCE")
-                        .requestMatchers("/loan").hasAuthority("VIEWLOANS")
-                        .requestMatchers("/card").hasAuthority("VIEWCARDS")
+//                        .requestMatchers("/accounts").hasAuthority("VIEWACCOUNT")
+//                        .requestMatchers("/balance").hasAnyAuthority("VIEWACCOUNT","VIEWBALANCE")
+//                        .requestMatchers("/loan").hasAuthority("VIEWLOANS")
+//                        .requestMatchers("/card").hasAuthority("VIEWCARDS")
                         .requestMatchers("/accounts").hasRole("USER")
                         .requestMatchers("/balance").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/loan").hasRole("USER")

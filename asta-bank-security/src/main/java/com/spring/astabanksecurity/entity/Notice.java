@@ -24,7 +24,7 @@ import java.sql.Date;
 public class Notice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notice_id", nullable = false)
     private int noticeId;
 

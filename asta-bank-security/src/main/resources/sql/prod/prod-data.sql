@@ -1,46 +1,41 @@
 INSERT INTO `customer` (`name`,`email`,`mobile_number`, `password`, `role`,`creation_date`)
-VALUES ('Sashank','sashank1991@live.com','9876548337', '$2a$10$AgIjLUXhd1TXjIXo3Eii5eGuy1aAYJCo.pJmGzmSZKLvl2FqIf7l.', 'admin', CURDATE());
+VALUES ('Sashank','sashank1991@live.com','9876548337', '$2a$10$AgIjLUXhd1TXjIXo3Eii5eGuy1aAYJCo.pJmGzmSZKLvl2FqIf7l.', 'ADMIN', CURDATE());
+
+INSERT INTO `customer` (`name`,`email`,`mobile_number`, `password`, `role`,`creation_date`)
+VALUES ('Aparna','aparna1234@live.com','9876548337', '$2a$10$1S.amPbGT8jjGIJzhITSR.5/hlmfublh9eY.bhG2SeEA3YxEu17aW', 'USER', CURDATE());
+
 
 INSERT INTO `authorities` (`id`, `customer_id`, `name`)
-VALUES (1, 1, 'VIEWACCOUNT');
+VALUES (1, 1, 'ROLE_ADMIN');
 
 INSERT INTO `authorities` (`id`, `customer_id`, `name`)
-VALUES (2, 1, 'VIEWCARDS');
-
-INSERT INTO `authorities` (`id`, `customer_id`, `name`)
-VALUES (3, 1, 'VIEWLOANS');
-
-INSERT INTO `authorities` (`id`, `customer_id`, `name`)
-VALUES (4, 1, 'VIEWBALANCE');
-
-INSERT INTO `authorities` (`id`, `customer_id`, `name`)
-VALUES (5, 1, 'ROLE_USER');
-
-INSERT INTO `authorities` (`id`, `customer_id`, `name`)
-VALUES (6, 1, 'ROLE_ADMIN');
+VALUES (2, 2, 'ROLE_USER');
 
 
 INSERT INTO `accounts` (`customer_id`, `account_number`, `account_type`, `branch_address`, `creation_date`)
-VALUES (1, 1865764534, 'Savings', '123 Main Street, New York', CURDATE());
+VALUES (1, 18657645, 'Savings', '123 Main Street, New York', CURDATE());
+
+INSERT INTO `accounts` (`customer_id`, `account_number`, `account_type`, `branch_address`, `creation_date`)
+VALUES (2, 28657645, 'Savings', '123 Main Street, New York', CURDATE());
 
 
 INSERT INTO `account_transactions` (`transaction_id`, `account_number`, `customer_id`, `transaction_date`, `transaction_summary`, `transaction_type`,`transaction_amount`,
-                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 1865764534, 1, DATE_SUB(CURDATE(), INTERVAL 7 DAY), 'Coffee Shop', 'Withdrawal', 30,34500, DATE_SUB(CURDATE(), INTERVAL 7 DAY));
+                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 18657645, 1, DATE_SUB(CURDATE(), INTERVAL 7 DAY), 'Coffee Shop', 'Withdrawal', 30,34500, DATE_SUB(CURDATE(), INTERVAL 7 DAY));
 
 INSERT INTO `account_transactions` (`transaction_id`, `account_number`, `customer_id`, `transaction_date`, `transaction_summary`, `transaction_type`,`transaction_amount`,
-                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 1865764534, 1, DATE_SUB(CURDATE(), INTERVAL 6 DAY), 'Uber', 'Withdrawal', 100,34400, DATE_SUB(CURDATE(), INTERVAL 6 DAY));
+                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 18657645, 1, DATE_SUB(CURDATE(), INTERVAL 6 DAY), 'Uber', 'Withdrawal', 100,34400, DATE_SUB(CURDATE(), INTERVAL 6 DAY));
 
 INSERT INTO `account_transactions` (`transaction_id`, `account_number`, `customer_id`, `transaction_date`, `transaction_summary`, `transaction_type`,`transaction_amount`,
-                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 1865764534, 1, DATE_SUB(CURDATE(), INTERVAL 5 DAY), 'Self Deposit', 'Deposit', 500,34900, DATE_SUB(CURDATE(), INTERVAL 5 DAY));
+                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 18657645, 1, DATE_SUB(CURDATE(), INTERVAL 5 DAY), 'Self Deposit', 'Deposit', 500,34900, DATE_SUB(CURDATE(), INTERVAL 5 DAY));
 
 INSERT INTO `account_transactions` (`transaction_id`, `account_number`, `customer_id`, `transaction_date`, `transaction_summary`, `transaction_type`,`transaction_amount`,
-                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 1865764534, 1, DATE_SUB(CURDATE(), INTERVAL 4 DAY), 'Ebay', 'Withdrawal', 600,34300, DATE_SUB(CURDATE(), INTERVAL 4 DAY));
+                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 28657645, 2, DATE_SUB(CURDATE(), INTERVAL 4 DAY), 'Ebay', 'Withdrawal', 600,34300, DATE_SUB(CURDATE(), INTERVAL 4 DAY));
 
 INSERT INTO `account_transactions` (`transaction_id`, `account_number`, `customer_id`, `transaction_date`, `transaction_summary`, `transaction_type`,`transaction_amount`,
-                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 1865764534, 1, DATE_SUB(CURDATE(), INTERVAL 2 DAY), 'OnlineTransfer', 'Deposit', 700,35000, DATE_SUB(CURDATE(), INTERVAL 2 DAY));
+                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 28657645, 2, DATE_SUB(CURDATE(), INTERVAL 2 DAY), 'OnlineTransfer', 'Deposit', 700,35000, DATE_SUB(CURDATE(), INTERVAL 2 DAY));
 
 INSERT INTO `account_transactions` (`transaction_id`, `account_number`, `customer_id`, `transaction_date`, `transaction_summary`, `transaction_type`,`transaction_amount`,
-                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 1865764534, 1, DATE_SUB(CURDATE(), INTERVAL 1 DAY), 'Amazon.com', 'Withdrawal', 100,34900, DATE_SUB(CURDATE(), INTERVAL 1 DAY));
+                                    `closing_balance`, `creation_date`)  VALUES (UUID(), 28657645, 2, DATE_SUB(CURDATE(), INTERVAL 1 DAY), 'Amazon.com', 'Withdrawal', 100,34900, DATE_SUB(CURDATE(), INTERVAL 1 DAY));
 
 
 INSERT INTO `loans` ( `loan_number`, `customer_id`, `start_date`, `loan_type`, `total_loan`, `amount_paid`, `outstanding_amount`, `creation_date`)
@@ -50,10 +45,10 @@ INSERT INTO `loans` ( `loan_number`, `customer_id`, `start_date`, `loan_type`, `
 VALUES ( 2, 1, '2020-06-06', 'Vehicle', 40000, 10000, 30000, '2020-06-06');
 
 INSERT INTO `loans` ( `loan_number`, `customer_id`, `start_date`, `loan_type`, `total_loan`, `amount_paid`, `outstanding_amount`, `creation_date`)
-VALUES ( 3, 1, '2018-02-14', 'Home', 50000, 10000, 40000, '2018-02-14');
+VALUES ( 3, 2, '2018-02-14', 'Home', 50000, 10000, 40000, '2018-02-14');
 
 INSERT INTO `loans` ( `loan_number`, `customer_id`, `start_date`, `loan_type`, `total_loan`, `amount_paid`, `outstanding_amount`, `creation_date`)
-VALUES ( 4, 1, '2018-02-14', 'Personal', 10000, 3500, 6500, '2018-02-14');
+VALUES ( 4, 2, '2018-02-14', 'Personal', 10000, 3500, 6500, '2018-02-14');
 
 
 
@@ -61,11 +56,16 @@ INSERT INTO `cards` ( `card_id`, `card_number`, `customer_id`, `card_type`, `tot
 VALUES ( 1, '4565XXXX4656', 1, 'Credit', 10000, 500, 9500, CURDATE());
 
 INSERT INTO `cards` ( `card_id`, `card_number`, `customer_id`, `card_type`, `total_limit`, `amount_used`, `available_amount`, `creation_date`)
-VALUES ( 2, '3455XXXX8673', 1, 'Credit', 7500, 600, 6900, CURDATE());
+VALUES ( 2, '3455XXXX8673', 1, 'Debit', 7500, 600, 6900, CURDATE());
 
 INSERT INTO `cards` ( `card_id`, `card_number`, `customer_id`, `card_type`, `total_limit`, `amount_used`, `available_amount`, `creation_date`)
 VALUES ( 3, '2359XXXX9346', 1, 'Credit', 20000, 4000, 16000, CURDATE());
 
+INSERT INTO `cards` ( `card_id`, `card_number`, `customer_id`, `card_type`, `total_limit`, `amount_used`, `available_amount`, `creation_date`)
+VALUES ( 4, '2359XXXX9346', 2, 'Credit', 20000, 4000, 16000, CURDATE());
+
+INSERT INTO `cards` ( `card_id`, `card_number`, `customer_id`, `card_type`, `total_limit`, `amount_used`, `available_amount`, `creation_date`)
+VALUES ( 5, '2359XXXX9346', 2, 'Debit', 20000, 4000, 16000, CURDATE());
 
 
 INSERT INTO `notice` ( `notice_id`, `notice_summary`, `notice_details`, `notice_begin_date`, `notice_end_date`, `creation_date`, `update_date`)

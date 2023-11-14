@@ -28,3 +28,29 @@ PRIMARY KEY (`id`));
 
 INSERT IGNORE INTO `users` VALUES (NULL, 'asta-user', 'userpassword', '1');
 INSERT IGNORE INTO `authorities` VALUES (NULL, 'asta-user', 'write');
+
+
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (1, 1, 'VIEWACCOUNT');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (2, 1, 'VIEWCARDS');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (3, 1, 'VIEWLOANS');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (4, 1, 'VIEWBALANCE');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (7, 2, 'VIEWACCOUNT');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (8, 2, 'VIEWCARDS');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (9, 2, 'VIEWLOANS');
+
+INSERT INTO `authorities` (`id`, `customer_id`, `name`)
+VALUES (10, 2, 'VIEWBALANCE');
