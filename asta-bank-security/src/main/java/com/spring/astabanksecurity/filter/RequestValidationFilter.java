@@ -38,6 +38,8 @@ public class RequestValidationFilter implements Filter {
                         throw new BadCredentialsException("Invalid basic authentication token");
                     }
                     String email = token.substring(0, delim);
+                    // Here we add a filter just before authentication to write our own custom validation.
+                    // If input email / username provided contains string 'test' inside it, validation will fail.
                     if (email.toLowerCase().contains("test")) {
                         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                         return;
