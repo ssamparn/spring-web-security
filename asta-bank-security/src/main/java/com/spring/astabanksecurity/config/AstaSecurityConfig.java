@@ -26,8 +26,8 @@ import java.util.Collections;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@Configuration
 @EnableWebSecurity(debug = true) // not recommended for production code
+@Configuration
 public class AstaSecurityConfig {
 
     @Bean
